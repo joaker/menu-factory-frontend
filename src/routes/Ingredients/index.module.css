@@ -1,0 +1,10 @@
+.ingredients form div {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.ingredients ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

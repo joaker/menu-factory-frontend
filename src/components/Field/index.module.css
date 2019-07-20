@@ -1,0 +1,12 @@
+.field {
+  display: flex;
+}
+
+.field > label {
+  font-weight: bolder;
+  width: 8em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.field > span {
+}

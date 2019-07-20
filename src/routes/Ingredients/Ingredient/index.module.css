@@ -1,0 +1,24 @@
+.ingredient {
+  position: relative;
+
+  margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+.ingredient > button {
+  width: auto;
+  border: none;
+  padding: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  font-size: 120%;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ingredient > button:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
