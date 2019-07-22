@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import connect from 'hoc/connect';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styles from './index.module.css';
@@ -28,13 +28,13 @@ const initialValues = {
   description: '',
 };
 
-export const AddIngredient = ({ addIngredient }) => {
+export const AddIngredient = () => {
   const [values, setValues] = useState(initialValues);
+  const dispatch = useDispatch();
   const handleChange = createHandleChange(values, setValues);
   const { name, description } = values;
   return (
     <form className={styles.ingredient}>
-      <h2>Create</h2>
       <TextField label="name" value={name} onChange={handleChange('name')} />
       <TextField
         label="description"
@@ -45,7 +45,7 @@ export const AddIngredient = ({ addIngredient }) => {
         disabled={!name}
         onClick={() => {
           setValues(initialValues);
-          addIngredient(name, description);
+          dispatch(addIngredient(name, description));
         }}
       >
         Add
@@ -54,11 +54,4 @@ export const AddIngredient = ({ addIngredient }) => {
   );
 };
 
-const mapDispatch = dispatch => ({
-  addIngredient: (...params) => dispatch(addIngredient(...params)),
-});
-
-export default connect(
-  undefined,
-  mapDispatch
-)(AddIngredient);
+export default AddIngredient;

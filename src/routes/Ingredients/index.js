@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
-import connect from 'hoc/connect';
-import { Context } from 'context';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import AddIngredient from './AddIngredient';
 import Ingredient from './Ingredient';
 import styles from './index.module.css';
 
-export const Ingredients = ({ ingredients }) => {
+export const selectIngredients = ({ entities: { ingredients } }) => ingredients;
+
+export const Ingredients = () => {
+  const ingredients = useSelector(selectIngredients);
   const items = ingredients.map(i => (
-    <li>
-      <Ingredient key={i.id} {...i} />
+    <li key={i.id}>
+      <Ingredient {...i} />
     </li>
   ));
   return (
@@ -20,8 +22,4 @@ export const Ingredients = ({ ingredients }) => {
   );
 };
 
-const mapState = ({ entities: { ingredients } }) => ({
-  ingredients,
-});
-
-export default connect(mapState)(Ingredients);
+export default Ingredients;

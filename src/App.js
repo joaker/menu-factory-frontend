@@ -1,30 +1,20 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import Container from '@material-ui/core/Container';
-import { Provider, Context } from './context';
+import store from 'store';
 import Router from './router.js';
 import './App.css';
 
 function App() {
-  const { dispatch } = useContext(Context);
-  useEffect(
-    () => {
-      dispatch({
-        type: 'APP_MOUNTED',
-      });
-    },
-    [dispatch]
-  );
   return (
-    <div className="App">
-      <Router />
-    </div>
+    <Provider store={store}>
+      <Container>
+        <div className="App">
+          <Router />
+        </div>
+      </Container>
+    </Provider>
   );
 }
 
-export default () => (
-  <Provider>
-    <Container>
-      <App />
-    </Container>
-  </Provider>
-);
+export default App;
