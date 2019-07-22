@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import request from 'lib/request';
+import Loading from 'components/Loading';
 import styles from './index.module.css';
 
 const addIngredient = (name, description) => {
@@ -30,6 +32,7 @@ const initialValues = {
 
 export const AddIngredient = () => {
   const [values, setValues] = useState(initialValues);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const handleChange = createHandleChange(values, setValues);
   const { name, description } = values;
@@ -45,11 +48,18 @@ export const AddIngredient = () => {
         disabled={!name}
         onClick={() => {
           setValues(initialValues);
-          dispatch(addIngredient(name, description));
+          setLoading(true);
+          request
+            .post('/ingredients', { ingredient: { name, description } })
+            .then(({ id }) => {
+              dispatch(addIngredient(name, description, id));
+              setLoading(false);
+            });
         }}
       >
         Add
       </Button>
+      <Loading show={loading} />
     </form>
   );
 };
