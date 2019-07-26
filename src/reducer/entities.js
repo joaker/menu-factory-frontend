@@ -6,6 +6,13 @@ export const initialState = {
 };
 
 export const actionMap = {
+  SET_INGREDIENTS: (state, action) => {
+    const { payload: ingredients } = action;
+    return {
+      ...state,
+      ingredients,
+    };
+  },
   ADD_INGREDIENT: (state, action) => {
     const { payload: entity } = action;
     const { id = uuid() } = entity;
