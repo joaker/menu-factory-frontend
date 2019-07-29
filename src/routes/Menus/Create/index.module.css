@@ -1,0 +1,8 @@
+.menu {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.menu button {
+  margin: 1em 0;
+}

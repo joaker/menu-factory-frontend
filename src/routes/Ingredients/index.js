@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import request from 'lib/request';
+import getIngredients from 'effects/ingredients/get';
 import AddIngredient from './AddIngredient';
 import Ingredient from './Ingredient';
 import styles from './index.module.css';
@@ -9,25 +9,7 @@ export const selectIngredients = ({ entities: { ingredients } }) => ingredients;
 
 export const Ingredients = () => {
   const dispatch = useDispatch();
-  useEffect(
-    () => {
-      request
-        .get('/ingredients')
-        .then(response => {
-          const {
-            data: { ingredients },
-          } = response;
-          dispatch({
-            type: 'SET_INGREDIENTS',
-            payload: ingredients,
-          });
-        })
-        .catch(error => {
-          console.error('ingredients GET request failed: ', error);
-        });
-    },
-    [dispatch]
-  );
+  useEffect(getIngredients(dispatch), []);
 
   const ingredients = useSelector(selectIngredients);
   const items = ingredients.map(i => (
