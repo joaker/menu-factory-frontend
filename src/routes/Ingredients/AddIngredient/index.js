@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import create from 'effects/ingredients/create';
 import createHandleChange from 'lib/createHandleChange';
-import withLoading from 'lib/withLoading';
 import Loading from 'components/Loading';
 import styles from './index.module.css';
 
